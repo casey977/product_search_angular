@@ -1,0 +1,7 @@
+<form>
+    <label for="loginUsername">Username:</label><br>
+	<input type="text" id="IDusername" name="loginUsername" size="30" [(ngModel)]="loginUsername"><br>
+    <label for="loginPassword">Password:</label><br>
+	<input type="text" id="IDpassword" name="loginPassword" size="30" [(ngModel)]="loginPassword"><br><br>
+    <input type="button" value="Login" (click)="loginAttempt()">
+</form>

@@ -1,0 +1,7 @@
+<main>
+	<ng-container *ngFor="let product of products; let i = index">
+		<ng-container *ngIf="conditions[i]">
+			<app-product [product]="product"></app-product>
+		</ng-container>
+	</ng-container>
+</main>
