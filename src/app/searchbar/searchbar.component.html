@@ -2,6 +2,7 @@
 	<form>
 	  <label for="productSearch">Search product:</label><br>
 	  <input type="text" id="IDsearch" name="productSearch" size="50" [(ngModel)]="searchTerm" (input)="searchChange()"><br><br>
-	  <!--<input type="submit" value="Submit">-->
+	  <input type="button" id="IDprev" name="prevButton" value="<<<" (click)="prevPage()">
+	  <input type="button" id="IDnext" name="nextButton" value=">>>" (click)="nextPage()"><br>
 	</form>
   </header>

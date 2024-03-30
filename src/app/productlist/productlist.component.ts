@@ -15,6 +15,6 @@ import {ProductComponent} from '../product/product.component';
 export class ProductlistComponent {
   constructor() {};
 
-  @Input() products = [];
+  @Input() products_to_show = [];
   @Input() conditions:boolean[] = [];
 }

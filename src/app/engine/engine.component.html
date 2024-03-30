@@ -1,2 +1,2 @@
-<app-searchbar (newSearch)="handleNewSearch($event)"></app-searchbar>
-<app-productlist [products]="products" [conditions]="conditions"></app-productlist>
+<app-searchbar (newSearch)="handleNewSearch($event)" (setPrevPage)="prevPage()" (setNextPage)="nextPage()"></app-searchbar>
+<app-productlist [products_to_show]="products_to_show" [conditions]="conditions"></app-productlist>

@@ -7,7 +7,6 @@ export const authGuard:CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   if(authService.isLoggedIn) {
-    console.log('gwege');
     return true;
   } else {
     return router.parseUrl('login');

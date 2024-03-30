@@ -33,6 +33,14 @@ export class EngineComponent {
   check:boolean = false;
   waitTime:number = 3000;
   timer:number = this.waitTime;
+  page:number = 0;
+  page_num:number = 10;
+
+  setPrevPage:boolean = false;
+  setNextPage:boolean = false;
+
+  products_to_list = [];
+  products_to_show = [];
 
   constructor(
     private listGetterService:ListgetterService,
@@ -50,12 +58,13 @@ export class EngineComponent {
             this.timer = this.waitTime;
             this.products = [];
             this.conditions = [];
+            this.products_to_list = [];
+            this.products_to_show = [];
             this.listGetterService.getList().subscribe(
               (data) => {
-                //console.log(data);
                 this.products = data.content;
+                this.page = 0;
                 this.products.forEach((value:Product) => {
-
                   let check:number = 0;
                   this.new_search_array = this.new_search.split(' ');
                   this.new_search_array.forEach((entry) => {
@@ -72,11 +81,17 @@ export class EngineComponent {
                   } else {
                     this.conditions.push(true);
                   }
-                
                 });
-                //console.log(this.products);
-                //console.log(this.conditions);
-              });
+
+                for (let i = 0; i < this.conditions.length; i++) {
+                  if (this.conditions[i] === true) {
+                    this.products_to_list.push(this.products[i]);
+                  }
+                }
+
+                this.products_to_show = this.products_to_list.slice(0, this.page_num);
+              }
+            );
           }
         }
       }, 1000);
@@ -89,6 +104,20 @@ export class EngineComponent {
       this.check = true;
       this.timer = this.waitTime;
       this.last_search = this.new_search;
+    }
+  }
+
+  prevPage() {
+    if (this.page > 0) {
+      this.page--;
+      this.products_to_show = this.products_to_list.slice(this.page_num * this.page, this.page_num * this.page + this.page_num);
+    }
+  }
+
+  nextPage() {
+    if (this.page < Math.ceil(this.products_to_list.length / this.page_num) - 1) {
+      this.page++;
+      this.products_to_show = this.products_to_list.slice(this.page_num * this.page, this.page_num * this.page + this.page_num);
     }
   }
 }

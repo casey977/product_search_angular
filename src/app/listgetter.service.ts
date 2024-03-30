@@ -19,7 +19,6 @@ export class ListgetterService {
     if (token) {
       headers = headers.set('authorization', `Bearer ${token}`);
     }
-    console.log(headers);
     return this.http.get<any>('http://164.92.204.153:1337/data', {headers});
   }
 }

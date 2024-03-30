@@ -16,8 +16,18 @@ export class SearchbarComponent {
   searchTerm:string = '';
 
   @Output() newSearch = new EventEmitter<string>();
+  @Output() setPrevPage = new EventEmitter<void>();
+  @Output() setNextPage = new EventEmitter<void>();
 
   searchChange():void {
     this.newSearch.emit(this.searchTerm);
+  }
+
+  prevPage():void {
+    this.setPrevPage.emit();
+  }
+
+  nextPage():void {
+    this.setNextPage.emit();
   }
 }
